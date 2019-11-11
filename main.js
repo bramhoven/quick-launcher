@@ -1,4 +1,4 @@
-const {app, BrowserWindow, globalShortcut } = require('electron')
+const {app, BrowserWindow, globalShortcut, ipcMain } = require('electron')
 const path = require('path')
 let mainWindow
 let visible = true;
@@ -6,13 +6,13 @@ let visible = true;
 const createWindow = () => {
   
   mainWindow = new BrowserWindow({
-    width: 300,
-    height: 200,
+    width: 500,
+    height: 500,
     webPreferences: {
       preload: path.join(__dirname, 'preload.js'),
       nodeIntegration: true
     }
-  })
+  });
   
   const ret = globalShortcut.register('CommandOrControl+Space', () => {
     if(!visible) {
@@ -23,18 +23,25 @@ const createWindow = () => {
       mainWindow.hide();
       visible = false;
     }
-  })
+  });
   mainWindow.loadFile('index.html')
 
   mainWindow.on('minimize',(event) => {
     event.preventDefault();
     mainWindow.hide();
+    visible = false;
   });
 
   mainWindow.on('close', (event) => {
     event.preventDefault();
     mainWindow.hide();
-  })
+    visible = false;
+  });
+
+  ipcMain.on('launch-complete', () => {
+    mainWindow.hide();
+    visible = false;
+  });
 }
 
 app.on('ready', createWindow)
