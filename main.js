@@ -15,7 +15,7 @@ const createWindow = () => {
     }
   });
   
-  const ret = globalShortcut.register('CommandOrControl+Space', () => {
+  const ret = globalShortcut.register('Shift+Space', () => {
     if(!visible) {
       mainWindow.show();
       visible = true;
