@@ -42,6 +42,10 @@ const createWindow = () => {
     mainWindow.hide();
     visible = false;
   });
+
+  ipcMain.on('quit-quick-launcher', () => {
+    app.quit();
+  });
 }
 
 app.on('ready', createWindow)

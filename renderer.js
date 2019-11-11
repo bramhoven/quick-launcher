@@ -25,17 +25,23 @@ const openChrome = (event) => {
   ipcRenderer.send('launch-complete');
 };
 
+const closeQuickLauncher = (event) => {
+  ipcRenderer.send('quit-quick-launcher');
+};
+
 const hotkeyManager = (event) => {
   let keyCode = event.keyCode;
   if(keyCode == 'b'.charCodeAt(0)) prevMedia();
   if(keyCode == 'p'.charCodeAt(0)) togglePlayMedia();
   if(keyCode == 'n'.charCodeAt(0)) nextMedia();
   if(keyCode == 'c'.charCodeAt(0)) openChrome();
+  if(keyCode == 'q'.charCodeAt(0)) closeQuickLauncher();
 };
 
 document.getElementById('prev').addEventListener('click', prevMedia);
 document.getElementById('play-pause').addEventListener('click', togglePlayMedia);
 document.getElementById('next').addEventListener('click', nextMedia);
 document.getElementById('chrome').addEventListener('click', openChrome);
+document.getElementById('ql-close').addEventListener('click', closeQuickLauncher);
 
 document.addEventListener('keypress', hotkeyManager);
