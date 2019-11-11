@@ -4,13 +4,21 @@
     <meta charset="UTF-8">
     <title>Quick Launch</title>
 
+    <link href="./style.css" type="text/css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Lato&display=swap" rel="stylesheet">
   </head>
   <body style="font-family: 'Lato', sans-serif;">
     <div id="music-control">
-      <h1 style="text-align: center;">Music Control</h1>
+      <h1>Music Control</h1>
 
-      <div id="music-controls" style="display: table; margin-left: auto; margin-right: auto;">
+      <p>Change volume with Up and Down arrow keys</p>
+      <div id="music-controls" class="controls">
+        <div class="volume">
+          <input type="range" min="0" max="100" value="2" class="slider" id="volume-range">
+        </div>
+
+        <br />
+
         <button id="prev">Prev (b)</button>
         <button id="play-pause">Play/ Pause (p)</button>
         <button id="next">Next (n)</button>
@@ -18,17 +26,17 @@
     </div>
 
     <div id="app-control">
-      <h1 style="text-align: center;">Application Control</h1>
+      <h1>Application Control</h1>
 
-      <div id="app-controls" style="display: table; margin-left: auto; margin-right: auto;">
+      <div id="app-controls" class="controls">
         <button id="chrome">Chrome (c)</button>
       </div>
     </div>
 
     <div id="ql-control">
-      <h1 style="text-align: center;">Quick Launcher Control</h1>
+      <h1>Quick Launcher Control</h1>
 
-      <div id="ql-controls" style="display: table; margin-left: auto; margin-right: auto;">
+      <div id="ql-controls" class="controls">
         <button id="ql-close">Close Quick Launcher (q)</button>
       </div>
     </div>
