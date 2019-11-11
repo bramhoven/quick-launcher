@@ -2,6 +2,7 @@ const {app, BrowserWindow, globalShortcut, ipcMain } = require('electron')
 const path = require('path')
 let mainWindow
 let visible = true;
+let quitting = false;
 
 const createWindow = () => {
   
@@ -33,9 +34,11 @@ const createWindow = () => {
   });
 
   mainWindow.on('close', (event) => {
-    event.preventDefault();
-    mainWindow.hide();
-    visible = false;
+    if(!quitting) {
+      event.preventDefault();
+      mainWindow.hide();
+      visible = false;
+    }
   });
 
   ipcMain.on('launch-complete', () => {
@@ -44,6 +47,8 @@ const createWindow = () => {
   });
 
   ipcMain.on('quit-quick-launcher', () => {
+    quitting = true;
+    mainWindow.close();
     app.quit();
   });
 }
