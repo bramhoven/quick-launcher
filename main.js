@@ -15,7 +15,7 @@ const createWindow = () => {
     }
   });
   
-  const ret = globalShortcut.register('Shift+Space', () => {
+  const toggleWindow = () => {
     if(!visible) {
       mainWindow.show();
       visible = true;
@@ -24,7 +24,10 @@ const createWindow = () => {
       mainWindow.hide();
       visible = false;
     }
-  });
+  }
+
+  globalShortcut.register('CommandOrControl+\\', toggleWindow);
+  globalShortcut.register('CommandOrControl+/', toggleWindow);
   mainWindow.loadFile('index.html')
 
   mainWindow.on('minimize',(event) => {
